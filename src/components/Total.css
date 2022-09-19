@@ -10,9 +10,8 @@
   min-width: 350px;
 }
 
-.total>h2 {
+h2 {
   padding-bottom: 8px;
-  border-bottom: 1px solid gainsboro;
 }
 
 .total__p {
@@ -100,6 +99,11 @@
 .total>button:active {
   background-color: unset;
   border: 1px solid #376951;
+}
+
+.cliente {
+  margin-bottom: 10px;
+  border-bottom: 1px solid gainsboro;
 }
 
 @media(max-width:800px) {
