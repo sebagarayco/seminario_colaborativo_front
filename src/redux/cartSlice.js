@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {
@@ -9,13 +8,13 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const itemInCart = state.cart.find((item) => item.id === action.payload.id);
-      console.log('El stock es: ' + action.payload.stock + ' y cantidad en carrito es: ' + itemInCart?.quantity);
+      console.log('El stock es: ' + action.payload.cantidadEnStock + ' y cantidad en carrito es: ' + itemInCart?.cantidad);
       console.log('El state esta asi: ' + JSON.stringify(state));
       if (!itemInCart) {
-        state.cart.push({ ...action.payload, quantity: 1 });
+        state.cart.push({ ...action.payload, cantidad: 1 });
       } else {
-        if (itemInCart.quantity < action.payload.stock) {
-          itemInCart.quantity++;
+        if (itemInCart.cantidad < action.payload.cantidadEnStock) {
+          itemInCart.cantidad++;
         } else {
           alert('No hay mas stock de este producto.');
         }
@@ -23,19 +22,19 @@ const cartSlice = createSlice({
     },
     incrementQuantity: (state, action) => {
       const item = state.cart.find((item) => item.id === action.payload);
-      console.log('Cantidad es: ' + item.quantity + ' y stock es: ' + item.stock);
-      if (item.quantity < item.stock) {
-        item.quantity++;
+      console.log('Cantidad es: ' + item.cantidad + ' y stock es: ' + item.cantidadEnStock);
+      if (item.cantidad < item.cantidadEnStock) {
+        item.cantidad++;
       } else {
         alert('No hay mas stock de este producto.');
       }
     },
     decrementQuantity: (state, action) => {
       const item = state.cart.find((item) => item.id === action.payload);
-      if (item.quantity === 1) {
-        item.quantity = 1
+      if (item.cantidad === 1) {
+        item.cantidad = 1
       } else {
-        item.quantity--;
+        item.cantidad--;
       }
     },
     removeItem: (state, action) => {

@@ -24,7 +24,7 @@ function Home() {
   const getTotalQuantity = () => {
     let total = 0
     cart.forEach(item => {
-      total += item.quantity
+      total += item.cantidad
     })
     return total
   }
@@ -38,10 +38,10 @@ function Home() {
             {productos.map(product => (
               <Item key={product.id}
                 id={product.id}
-                title={product.nombre}
-                price={product.precioUnitario}
-                stock={product.cantidadEnStock}
-                image="https://dummyimage.com/200x200/000/fff.png&text=Café"
+                nombre={product.nombre}
+                precioUnitario={product.precioUnitario}
+                cantidadEnStock={product.cantidadEnStock}
+                imagen="https://dummyimage.com/200x200/000/fff.png&text=Café"
               />
             ))
             }
