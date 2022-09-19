@@ -1,0 +1,116 @@
+.total {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 270px;
+  height: max-content;
+  padding: 20px;
+  background: white;
+  border-radius: 3px;
+  min-width: 350px;
+}
+
+.total>h2 {
+  padding-bottom: 8px;
+  border-bottom: 1px solid gainsboro;
+}
+
+.total__p {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 450;
+  color: rgb(72, 77, 77);
+  float: left;
+  margin-bottom: 10px;
+}
+
+.total__p__value {
+  float: right;
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 450;
+}
+
+.total__p__line {
+  border-top: 1px solid gainsboro;
+  border-bottom: 1px solid gainsboro;
+}
+
+.total__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.total__b__pagar {
+  background: #499e78;
+  color: #fff;
+  border-radius: 20px;
+  padding: 8px 30px;
+  border: none;
+  margin-top: 10px;
+  font-size: large;
+}
+
+.total__b__pagar:hover {
+  background: #3c7956;
+  box-shadow: 0 8px 8px lightgray;
+}
+
+.total__b__pagar:active {
+  box-shadow: 0 8px 8px gray;
+}
+
+.total__b__erase {
+  background: red;
+  color: #fff;
+  border-radius: 20px;
+  padding: 8px 30px;
+  border: none;
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: large;
+}
+
+.total__b__erase:hover {
+  background: darkred;
+  box-shadow: 0 8px 8px lightgray;
+}
+
+.total__b__erase:active {
+  box-shadow: 0 8px 8px gray;
+}
+
+.total__item {
+  font-weight: 400;
+  font-size: 20px;
+  color: rgb(72, 77, 77);
+}
+
+.total__item__quantity {
+  float: left;
+}
+
+.total__item__price {
+  float: right;
+}
+
+.total>button:active {
+  background-color: unset;
+  border: 1px solid #376951;
+}
+
+@media(max-width:800px) {
+  .total {
+    width: unset;
+    text-align: center;
+  }
+}
+
+@media(max-width:900px) {
+  .total {
+    min-width: unset;
+  }
+}
