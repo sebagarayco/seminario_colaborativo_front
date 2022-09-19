@@ -19,11 +19,11 @@ function Cart() {
               <CartItem
                 key={item.id}
                 id={item.id}
-                image={item.image}
-                title={item.title}
-                price={item.price}
-                stock={item.stock}
-                quantity={item.quantity}
+                imagen={item.imagen}
+                nombre={item.nombre}
+                precioUnitario={item.precioUnitario}
+                cantidadEnStock={item.cantidadEnStock}
+                cantidad={item.cantidad}
               />
             ))}
           </div>

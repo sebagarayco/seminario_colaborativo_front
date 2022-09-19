@@ -14,31 +14,41 @@ function Total() {
   const [inputs, setInputs] = useState({});
 
   const handleChange = evt => {
-    console.log('El ' + evt.target.id + ' es ' + evt.target.value)
     const name = evt.target.id;
     const value = evt.target.value;
-    setInputs(values => ({ ...values, [name]: value }))
-    console.log(inputs)
+    setInputs(values => ({ ...values, [name.toLowerCase()]: value }))
   }
 
   const getTotal = () => {
     let totalQuantity = 0
     let totalPrice = 0
     cart.forEach(item => {
-      totalQuantity += item.quantity
-      totalPrice += item.price * item.quantity
+      totalQuantity += item.cantidad
+      totalPrice += item.precioUnitario * item.cantidad
     })
     return { totalPrice, totalQuantity }
   }
 
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log('Form submitted ✅' + JSON.stringify(event, inputs));
+  const confirmarPedido = (event) => {
+    event.preventDefault()
+    var payload = {
+      "detallePedido": [
+        cart
+      ],
+      "importeTotal": getTotal().totalPrice,
+      "cliente": {
+        "apellido": inputs.apellido,
+        "nombre": inputs.nombre,
+        "telefono": inputs.telefono,
+        "documento": inputs.documento,
+        "domicilio": inputs.domicilio
+      }
+    }
+    console.log(payload);
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={confirmarPedido}>
       <div className="total">
         <div className="cliente">
           <h2>Cliente</h2>
@@ -66,10 +76,10 @@ function Total() {
           cart.map(item => (
             <div className="total__item" key={item.id}>
               <div className="total__item__quantity">
-                {item.quantity} x {item.title}
+                {item.cantidad} x {item.nombre}
               </div>
               <div className="total__item__price">
-                ${item.price * item.quantity}
+                ${item.precioUnitario * item.cantidad}
               </div>
             </div>
           ))
