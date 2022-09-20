@@ -1,12 +1,14 @@
-import './Total.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { clearCart } from '../redux/cartSlice'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-
+import client from '../http-common'
+import './Total.css'
 
 function Total() {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const cart = useSelector((state) => state.cart)
 
@@ -29,12 +31,26 @@ function Total() {
     return { totalPrice, totalQuantity }
   }
 
+  const detallePedido = () => {
+    let detalle = []
+    cart.forEach(item => {
+      detalle.push({
+        "producto": {
+          id: item.id,
+          imagen: item.imagen,
+          precioUnitario: item.precioUnitario,
+          cantidadEnStock: item.cantidadEnStock,
+        },
+        "cantidad": item.cantidad
+      })
+    })
+    return detalle
+  }
+
   const confirmarPedido = (event) => {
     event.preventDefault()
     var payload = {
-      "detallePedido": [
-        cart
-      ],
+      "detallePedido": detallePedido(),
       "importeTotal": getTotal().totalPrice,
       "cliente": {
         "apellido": inputs.apellido,
@@ -44,7 +60,13 @@ function Total() {
         "domicilio": inputs.domicilio
       }
     }
-    console.log(payload);
+    console.log(payload)
+    client.post('/pedido', payload).then((response) => {
+      console.log(response.data);
+      alert('Muchas gracias por su compra!')
+      dispatch(clearCart())
+      navigate('/')
+    });
   }
 
   return (
