@@ -88,6 +88,7 @@ function Total() {
                     id={data}
                     label={data}
                     onChange={handleChange}
+                    type={data === 'Telefono' || data === 'Documento' ? 'number' : 'text'}
                   />
                 ))}
             </div>
